@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b25">
+  <meta name="description" content="Інтерактивне розслідування: що залишиться в полі боротьби за правила ШІ, якщо прибрати вірусний допис? Хронологія, гроші, різні пропозиції та першоджерела.">
+  <title>Хто бере кермо? | МИ</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #101b25;
+      --night-2: #182834;
+      --night-3: #223440;
+      --ink: #182630;
+      --paper: #f1ebde;
+      --paper-2: #e8dfcd;
+      --muted: #b6c4c6;
+      --edge: rgba(237, 241, 221, .30);
+      --line: rgba(242, 238, 225, .19);
+      --citron: #dcf078;
+      --orange: #ff9d74;
+      --teal: #8bd0c6;
+      --blue: #a5c1ec;
+      --violet: #c0b2e8;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--night); color: var(--paper); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Arial, sans-serif; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; cursor: pointer; }
+    a { color: inherit; text-underline-offset: .18em; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--citron); outline-offset: 4px; }
+    button:disabled { cursor: not-allowed; }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .skip { position: absolute; left: 16px; top: -80px; z-index: 50; padding: 10px; color: var(--ink); background: var(--citron); }
+    .skip:focus { top: 10px; }
+    .mast { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 77px; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -.035em; text-decoration: none; }
+    .brand-icon { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 50%; background: var(--citron); color: var(--ink); font-size: 22px; }
+    .mast nav { display: flex; gap: 19px; font-size: .83rem; color: var(--muted); }
+    .mast nav a:hover { color: var(--paper); }
+    .kicker, .eyebrow { font-weight: 750; font-size: .74rem; letter-spacing: .15em; text-transform: uppercase; }
+    .kicker { color: var(--citron); }
+    .eyebrow { color: #68716e; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(240px, .6fr); gap: 36px; align-items: end; padding-block: clamp(52px, 8vw, 105px) 65px; }
+    .hero h1 { max-width: 820px; margin: 14px 0 23px; font-size: clamp(3.2rem, 7.8vw, 7.1rem); line-height: .99; letter-spacing: -.075em; font-weight: 820; }
+    .hero h1 em { font-style: normal; color: var(--citron); }
+    .hero p { max-width: 680px; margin: 0; font-size: clamp(1.08rem, 2.1vw, 1.38rem); line-height: 1.46; color: #d2dacf; }
+    .hero-rail { align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; gap: 17px; padding-left: 26px; border-left: 1px solid var(--line); }
+    .rail-mark { font-size: clamp(5rem, 9vw, 9rem); line-height: .85; letter-spacing: -.1em; color: var(--orange); font-weight: 850; }
+    .rail-copy { color: var(--muted); font-size: .93rem; }
+    .rail-copy strong { display: block; margin-bottom: 4px; color: var(--paper); font-size: 1rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 33px; }
+    .cta { min-height: 52px; border: 0; border-radius: 5px; padding: 12px 18px; background: var(--citron); color: var(--ink); font-weight: 780; transition: transform .16s, background .16s; }
+    .cta:hover { transform: translateY(-2px); background: #e8f6a5; }
+    .quiet-link { padding: 10px; color: var(--paper); font-size: .92rem; }
+    .thesis { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #15232d; }
+    .thesis .wrap { display: grid; grid-template-columns: .4fr 1.6fr; gap: 30px; align-items: baseline; padding-block: 25px; }
+    .thesis p { margin: 0; font-size: clamp(1.2rem, 2.6vw, 1.73rem); line-height: 1.3; font-weight: 660; letter-spacing: -.025em; }
+    .section { padding-block: 74px 20px; }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 22px; margin-bottom: 23px; }
+    .section-head h2 { max-width: 740px; margin: 7px 0 0; font-size: clamp(2rem, 4.4vw, 3.5rem); line-height: 1.07; letter-spacing: -.057em; }
+    .section-head p { max-width: 390px; margin: 0; color: var(--muted); font-size: .94rem; }
+    .board-shell { overflow: hidden; border-radius: 10px; background: #1a2a35; border: 1px solid #334750; box-shadow: 0 30px 80px rgba(0, 0, 0, .16); }
+    .board-tools { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+    .board-tools p { margin: 0; color: var(--muted); font-size: .85rem; }
+    .toggle { display: inline-flex; gap: 10px; align-items: center; border: 1px solid #556d70; border-radius: 100px; padding: 9px 15px; background: transparent; color: var(--paper); font-size: .88rem; font-weight: 750; }
+    .toggle:hover { border-color: var(--citron); }
+    .toggle::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 12px var(--orange); }
+    .toggle.off::before { background: var(--muted); box-shadow: none; }
+    .board { position: relative; display: grid; grid-template-columns: .85fr 1.22fr 1.08fr; gap: 22px; min-height: 490px; padding: 36px 28px 45px; background-image: radial-gradient(rgba(233,238,222,.12) .75px, transparent .75px); background-size: 19px 19px; }
+    .paths { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 0; }
+    .paths path { fill: none; stroke: var(--edge); stroke-width: 1.4px; transition: stroke .2s, opacity .2s; }
+    .paths path.active { stroke: var(--citron); stroke-width: 2.6px; }
+    .paths path.dim { opacity: .14; }
+    .board-column { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; }
+    .column-label { margin: 0 0 5px; color: #abc0be; font-size: .72rem; font-weight: 760; letter-spacing: .13em; text-transform: uppercase; }
+    .node { position: relative; width: 100%; display: block; text-align: left; border: 1px solid #53656a; border-radius: 7px; padding: 13px 15px 14px; background: #283b45; color: #f1efe4; transition: border-color .18s, background .18s, opacity .18s, transform .18s; }
+    .node:hover { transform: translateY(-2px); border-color: #aebbc1; }
+    .node.selected { border-color: var(--citron); background: #344748; box-shadow: inset 3px 0 var(--citron); }
+    .node.linked { border-color: #9bb9ad; }
+    .node small { display: block; margin-bottom: 5px; color: var(--teal); font-size: .68rem; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
+    .node strong { display: block; font-size: 1.05rem; line-height: 1.15; letter-spacing: -.025em; }
+    .node span { display: block; margin-top: 5px; color: #c3d0cb; font-size: .78rem; }
+    .node.signal { background: #463c39; border-color: #b97760; }
+    .node.signal small { color: #ffc5aa; }
+    .node.signal.selected { border-color: var(--citron); }
+    .signal-vacant { display: none; min-height: 125px; border: 1px dashed #67787a; border-radius: 7px; padding: 19px 15px; color: #afc1bb; font-size: .92rem; }
+    .signal-vacant strong { display: block; margin-bottom: 6px; color: var(--paper); }
+    .board.off .node.signal { display: none; }
+    .board.off .signal-vacant { display: block; }
+    .signal-note { margin: 0; padding-top: 12px; color: #c9d1ca; font-size: .87rem; }
+    .board-result { display: flex; gap: 12px; align-items: flex-start; padding: 17px 21px; border-top: 1px solid var(--line); background: #20313b; }
+    .board-result .dot { flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; background: var(--orange); margin-top: 6px; }
+    .board-result.off .dot { background: var(--citron); }
+    .board-result p { margin: 0; font-size: .93rem; }
+    .board-result strong { color: var(--citron); }
+    .detail { display: grid; grid-template-columns: minmax(180px, .7fr) repeat(3, minmax(0, 1fr)); gap: 26px; padding: 25px; background: var(--paper); color: var(--ink); border-top: 1px solid rgba(10,20,22,.12); }
+    .detail h3 { margin: 0 0 8px; font-size: clamp(1.34rem, 2.1vw, 1.75rem); line-height: 1.1; letter-spacing: -.04em; }
+    .detail p { margin: 0; font-size: .88rem; line-height: 1.5; }
+    .detail .kind { color: #587169; font-size: .71rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 800; margin-bottom: 9px; }
+    .detail .field-title { margin-bottom: 7px; font-size: .73rem; font-weight: 780; color: #57635f; letter-spacing: .08em; text-transform: uppercase; }
+    .detail a { display: inline-block; margin-top: 14px; font-size: .83rem; color: #355e53; font-weight: 720; }
+    .detail .sources a + a::before { content: " · "; color: #82918a; }
+    .timeline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; margin-top: 22px; }
+    .moment { min-height: 110px; text-align: left; padding: 11px 10px 13px; border: 1px solid #48606a; border-radius: 5px; background: #1d2e3b; color: var(--paper); transition: border-color .15s, background .15s; }
+    .moment:hover, .moment.active { border-color: var(--citron); background: #2b3d43; }
+    .moment .date { display: block; color: var(--citron); font-weight: 820; font-size: .88rem; }
+    .moment span:last-child { display: block; margin-top: 7px; font-size: .75rem; line-height: 1.25; }
+    .moment.shock .date { color: var(--orange); }
+    .time-comment { margin: 13px 2px 0; color: var(--muted); font-size: .89rem; min-height: 27px; }
+    .paper-section { margin-top: 88px; padding-block: 76px 82px; color: var(--ink); background: var(--paper); }
+    .paper-section .section-head p { color: #5a6767; }
+    .paper-section .kicker { color: #416e60; }
+    .question { margin: 23px 0 22px; font-size: 1.17rem; line-height: 1.42; }
+    .rules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .rule { min-height: 172px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 21px; border: 1px solid #aaafa3; border-radius: 6px; background: #faf6eb; color: var(--ink); transition: transform .16s, border-color .16s, box-shadow .16s; }
+    .rule:hover { transform: translateY(-3px); }
+    .rule.active { border-color: #59765e; box-shadow: inset 0 4px #59765e; }
+    .rule .number { color: #59765e; font-weight: 800; font-size: .72rem; letter-spacing: .14em; }
+    .rule strong { margin-top: 17px; font-size: 1.22rem; line-height: 1.18; letter-spacing: -.025em; }
+    .rule span:last-child { margin-top: auto; padding-top: 13px; color: #53605d; font-size: .83rem; }
+    .rule-result { margin-top: 14px; padding: 22px 24px; min-height: 100px; border-radius: 5px; background: #dee6d1; }
+    .rule-result p { margin: 0; max-width: 850px; font-size: 1.05rem; }
+    .rule-result a { color: #244c3f; }
+    .evidence { display: grid; grid-template-columns: 1.1fr .9fr; gap: 44px; padding-block: 91px 75px; }
+    .evidence h2 { margin: 8px 0 15px; font-size: clamp(2.2rem, 4.1vw, 3.6rem); line-height: 1.06; letter-spacing: -.055em; }
+    .evidence p { color: var(--muted); }
+    .ledger { border-top: 1px solid var(--line); }
+    .ledger-item { display: grid; grid-template-columns: 118px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .ledger-item .amount { font-size: 1.4rem; font-weight: 810; letter-spacing: -.035em; color: var(--citron); line-height: 1.2; }
+    .ledger-item .amount.unknown { color: #b8c2c2; font-size: 1.1rem; }
+    .ledger-item strong { display: block; font-size: .91rem; }
+    .ledger-item span { display: block; color: var(--muted); font-size: .81rem; }
+    .ledger-item a { color: var(--teal); font-size: .8rem; }
+    .lens { margin-top: 24px; border-left: 3px solid var(--orange); padding: 2px 0 2px 16px; font-size: .92rem; }
+    .lens strong { color: var(--paper); }
+    .foot-section { border-top: 1px solid var(--line); padding-block: 54px 70px; }
+    .foot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .foot-section h2 { margin: 8px 0 12px; font-size: clamp(1.7rem, 3vw, 2.5rem); letter-spacing: -.04em; }
+    .foot-section p, .foot-section li { color: var(--muted); font-size: .9rem; }
+    .foot-section ul { margin: 0; padding-left: 20px; }
+    .foot-section li { margin-bottom: 10px; }
+    .sources-all { display: flex; flex-wrap: wrap; gap: 7px 17px; margin-top: 26px; }
+    .sources-all a { font-size: .83rem; color: var(--teal); }
+    footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 0 28px; border-top: 1px solid var(--line); font-size: .76rem; color: var(--muted); }
+    footer strong { color: var(--paper); }
+    @media (max-width: 980px) {
+      .detail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .timeline { grid-template-columns: repeat(4, 1fr); }
+      .evidence { gap: 28px; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: min(var(--max), calc(100% - 30px)); }
+      .mast { min-height: 64px; }
+      .mast nav { gap: 12px; }
+      .mast nav a:first-child { display: none; }
+      .hero { display: block; padding-block: 58px 55px; }
+      .hero h1 { font-size: clamp(3.25rem, 14vw, 5rem); }
+      .hero-rail { flex-direction: row; align-items: end; gap: 18px; margin-top: 34px; padding: 0 0 0 17px; }
+      .rail-mark { font-size: 5rem; }
+      .thesis .wrap { display: block; }
+      .thesis .kicker { display: block; margin-bottom: 11px; }
+      .section { padding-block: 60px 18px; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 12px; }
+      .board { display: grid; grid-template-columns: 1fr; gap: 21px; padding: 24px 16px; }
+      .board-column { gap: 9px; }
+      .board-column + .board-column { border-top: 1px solid var(--line); padding-top: 21px; }
+      .node { padding: 12px 14px; }
+      .paths { display: none; }
+      .detail { grid-template-columns: 1fr; gap: 18px; padding: 21px; }
+      .detail > div + div { border-top: 1px solid #d3cbbb; padding-top: 13px; }
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+      .moment { min-height: 81px; }
+      .paper-section { margin-top: 65px; padding-block: 60px 63px; }
+      .rules { grid-template-columns: 1fr; }
+      .rule { min-height: 120px; }
+      .rule strong { margin-top: 10px; }
+      .evidence, .foot-grid { grid-template-columns: 1fr; gap: 22px; }
+      .evidence { padding-block: 62px 72px; }
+      .ledger-item { grid-template-columns: 96px 1fr; }
+      .foot-section { padding-top: 46px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#game">Перейти до карти</a>
+  <header class="mast wrap">
+    <a class="brand" href="#top" aria-label="На початок"><span class="brand-icon" aria-hidden="true">↗</span><span>МИ <span style="opacity:.54">/ ПОЛЕ</span></span></a>
+    <nav aria-label="Розділи"><a href="#game">Карта</a><a href="#rules">Правила</a><a href="#money">Ресурс</a><a href="#limits">Межа доказу</a></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div>
+        <div class="kicker">Інтерактивне дослідження · 26.09.2026</div>
+        <h1 id="hero-title">Хто бере<br><em>кермо?</em></h1>
+        <p>Допис колишнього дослідника ШІ зібрав величезну увагу. За ним ми знайшли поле організацій, грошей і несхожих правил. Спробуй прибрати допис із картини: чи перестане вона працювати?</p>
+        <div class="hero-actions">
+          <a class="cta" href="#game" style="text-decoration:none;display:inline-flex;align-items:center">Увійти в поле ↗</a>
+          <a class="quiet-link" href="#rules">Одразу до предмета боротьби ↓</a>
+        </div>
+      </div>
+      <aside class="hero-rail" aria-label="Початковий слід">
+        <div class="rail-mark" aria-hidden="true">08</div>
+        <div class="rail-copy"><strong>Вересень 2026</strong>Один допис. Багато охочих визначати правила. Плутанина починається, коли ми називаємо це одним рухом.</div>
+      </aside>
+    </section>
+
+    <div class="thesis">
+      <div class="wrap"><span class="kicker">Стисла відповідь</span><p>Єдиного режисера цього епізоду ми не встановили. Знайшли інше: різні гравці скористалися тією самою хвилею тривоги, але тягнуть її до різних рішень.</p></div>
+    </div>
+
+    <section class="section wrap" id="game" aria-labelledby="game-title">
+      <div class="section-head">
+        <div><span class="kicker">Дослід 01 / прибери привід</span><h2 id="game-title">Стерти спалах.<br>Що лишиться?</h2></div>
+        <p>Торкнись вузла, щоб побачити його заявлену мету, зафіксовану дію і межу нашого знання. Світлі лінії позначають документовані зв’язки.</p>
+      </div>
+      <div class="board-shell">
+        <div class="board-tools">
+          <button class="toggle" id="signalToggle" type="button" aria-pressed="false">Прибрати допис Коксона</button>
+          <p>Спробуй перемкнути, потім натисни на будь-який вузол.</p>
+        </div>
+        <div class="board" id="board" aria-label="Карта публічно підтверджених зв’язків">
+          <svg class="paths" id="paths" aria-hidden="true"></svg>
+          <div class="board-column">
+            <p class="column-label">Подія / спалах</p>
+            <button class="node signal selected" type="button" data-node="coxon" aria-pressed="true"><small>08.09 · людина</small><strong>Коксон</strong><span>Вірусний допис</span></button>
+            <div class="signal-vacant" aria-hidden="true"><strong>Допис прибрано</strong>Тепер дивись: які структури лишились на місці?</div>
+            <p class="signal-note">Гучність події ще не показує, хто створив правила.</p>
+          </div>
+          <div class="board-column">
+            <p class="column-label">Інфраструктура / інтереси</p>
+            <button class="node" type="button" data-node="miri" aria-pressed="false"><small>дослідження → політика</small><strong>MIRI</strong><span>Стратегія 2024</span></button>
+            <button class="node" type="button" data-node="dey" aria-pressed="false"><small>комунікації</small><strong>DEY.</strong><span>Піар-агенція</span></button>
+            <button class="node" type="button" data-node="fli" aria-pressed="false"><small>кампанія</small><strong>FLI</strong><span>Оголошення в лютому</span></button>
+            <button class="node" type="button" data-node="control" aria-pressed="false"><small>лобіювання</small><strong>ControlAI</strong><span>Заборона ASI, вузькі правила</span></button>
+          </div>
+          <div class="board-column">
+            <p class="column-label">Політика / розробка</p>
+            <button class="node" type="button" data-node="sanders" aria-pressed="false"><small>законопроєкт</small><strong>Сандерс і Касар</strong><span>Заборона + пауза + регулятор</span></button>
+            <button class="node" type="button" data-node="anthropic" aria-pressed="false"><small>лабораторія</small><strong>Амодей / Anthropic</strong><span>Узгоджений темп розробки</span></button>
+            <button class="node" type="button" data-node="whitehouse" aria-pressed="false"><small>урядова рамка</small><strong>Білий дім</strong><span>Курс на менші бар’єри штатів</span></button>
+          </div>
+        </div>
+        <div class="board-result" id="boardResult" role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><p><strong>Пост у грі.</strong> Він привернув увагу і став політичною цитатою. Перевір, чи встиг породити політичні плани.</p></div>
+        <div class="detail" id="detail" aria-live="polite"></div>
+      </div>
+      <div class="timeline" role="group" aria-label="Перевір хронологію">
+        <button class="moment" type="button" data-moment="miri"><span class="date">2024</span><span>MIRI описує пріоритет політики й комунікацій</span></button>
+        <button class="moment" type="button" data-moment="fli"><span class="date">09.02</span><span>FLI оголошує кампанію</span></button>
+        <button class="moment" type="button" data-moment="sanders"><span class="date">03.09</span><span>Сандерс і Касар анонсують білль</span></button>
+        <button class="moment shock" type="button" data-moment="coxon"><span class="date">08.09</span><span>Вірусний допис Коксона</span></button>
+        <button class="moment" type="button" data-moment="dey"><span class="date">після</span><span>Соарес просить DEY. допомогти</span></button>
+        <button class="moment" type="button" data-moment="sanders"><span class="date">15.09</span><span>Сандерс цитує Коксона</span></button>
+        <button class="moment" type="button" data-moment="sanders"><span class="date">23.09</span><span>Текст білля внесено</span></button>
+      </div>
+      <p class="time-comment" id="timeComment" aria-live="polite">Анонс білля був за п’ять днів до поста. Цю дату не можна пересунути вірусністю.</p>
+    </section>
+
+    <section class="paper-section" id="rules" aria-labelledby="rules-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">Дослід 02 / три керма</span><h2 id="rules-title">Усі кажуть «ризик».<br>Кожен просить інше.</h2></div>
+          <p>Обери правило і подивись, хто його просуває. Спільна мова про небезпеку ще не означає спільної політичної програми.</p>
+        </div>
+        <p class="question">Яке з цих рішень ти вважав би «регулюванням ШІ»?</p>
+        <div class="rules" role="group" aria-label="Варіанти правил">
+          <button class="rule active" type="button" data-rule="sanders" aria-pressed="true"><span class="number">01 / ДЕРЖАВА</span><strong>Заборона ASI і широка тимчасова пауза</strong><span>Сандерс і Касар · запропонований закон</span></button>
+          <button class="rule" type="button" data-rule="control" aria-pressed="false"><span class="number">02 / ЦІЛЬОВА ЗАБОРОНА</span><strong>Заборонити ASI без широкої паузи</strong><span>ControlAI · публічна критика білля</span></button>
+          <button class="rule" type="button" data-rule="anthropic" aria-pressed="false"><span class="number">03 / УЗГОДЖЕНИЙ ТЕМП</span><strong>Спільні правила й зовнішні оцінювачі</strong><span>Амодей · пропозиція для лабораторій</span></button>
+        </div>
+        <div class="rule-result" id="ruleResult" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="evidence wrap" id="money" aria-labelledby="money-title">
+      <div>
+        <span class="kicker">Дослід 03 / ресурс</span>
+        <h2 id="money-title">Де в цій історії<br>лежать гроші?</h2>
+        <p>У різних місцях. Оголошена кампанія, зареєстрований лобізм і невідомий рахунок піар-агенції означають різні речі. Змішати їх у «хтось оплатив Коксона» було б легким, але невірним рухом.</p>
+        <div class="lens"><strong>Тест на двигун:</strong> подивись, на що організація витрачає ресурс регулярно, яке правило пропонує та що з її пропозиції опиняється в офіційному тексті. Рахунок за один пізній медійний епізод не замінить цього маршруту.</div>
+      </div>
+      <div class="ledger" aria-label="Розрізнення грошових слідів">
+        <div class="ledger-item"><div class="amount">до $8 млн</div><div><strong>FLI: заявлена можлива стеля кампанії</strong><span>Не сума підтверджених фактичних витрат.</span><a href="https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwide-ai-regulation-campaign/" target="_blank" rel="noopener noreferrer">Заява FLI ↗</a></div></div>
+        <div class="ledger-item"><div class="amount">$200 тис.</div><div><strong>ControlAI US: звітні витрати на лобізм</strong><span>$120 тис. за I і $80 тис. за II квартал 2026. Це не виплати законодавцям.</span><a href="https://lda.gov/filings/public/filing/274a03b6-5086-4c8b-802f-003865436f37/print/" target="_blank" rel="noopener noreferrer">I квартал ↗</a> · <a href="https://lda.gov/filings/public/filing/9b928c60-327c-47f7-9add-ac736a2fccf7/print/" target="_blank" rel="noopener noreferrer">II квартал ↗</a></div></div>
+        <div class="ledger-item"><div class="amount">$25 тис.</div><div><strong>Зазначений внесок британської організації в лобіювання ControlAI US</strong><span>Secure Future Research Ltd від 10.09.2026 має назву ControlAI: це не встановлений «третій спонсор».</span><a href="https://find-and-update.company-information.service.gov.uk/company/15088415" target="_blank" rel="noopener noreferrer">Реєстр Британії ↗</a> · <a href="https://lda.gov/filings/public/filing/66fdbb45-e0c5-4487-b779-063917e7bda4/print/" target="_blank" rel="noopener noreferrer">Реєстрація США ↗</a></div></div>
+        <div class="ledger-item"><div class="amount unknown">невідомо</div><div><strong>Рахунок DEY. за епізод Коксона</strong><span>Показав би платника конкретної послуги. Вихідної вірусності та руху білля ним не пояснити.</span><a href="https://x.com/So8res/status/2103286951747199004" target="_blank" rel="noopener noreferrer">Пояснення Соареса ↗</a></div></div>
+      </div>
+    </section>
+
+    <section class="foot-section" id="limits" aria-labelledby="limits-title">
+      <div class="wrap">
+        <div class="foot-grid">
+          <div><span class="kicker">Що витримує перевірку</span><h2 id="limits-title">Поле існувало до спалаху.</h2><p>MIRI оприлюднила політичну стратегію у 2024 році, FLI почала кампанію до вересня, а законодавці анонсували свій білль до допису. Соарес говорить, що попросив DEY. допомогти вже після значного розгону допису і агентство не здобуло Коксону жодного ефіру. При цьому він справді давав інтерв’ю великим медіа й був процитований сенатором.</p></div>
+          <div><span class="kicker">Де лишається порожнє місце</span><h2>Межа не псує відкриття.</h2><ul><li>Ми не встановили спільного прихованого замовника чи участі Китаю або Росії в поширенні цього допису.</li><li>Сам факт контактів лобістів із законодавцями не встановлює авторства конкретних формулювань або неправомірної винагороди.</li><li>Не доведено, що допис спричинив анонс білля, змінив його текст чи був оплачений на етапі первинного поширення.</li></ul></div>
+        </div>
+        <div class="sources-all" aria-label="Першоджерела та матеріали">
+          <a href="https://intelligence.org/2024/01/04/miri-2024-mission-and-strategy-update/" target="_blank" rel="noopener noreferrer">MIRI: стратегія</a>
+          <a href="https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwide-ai-regulation-campaign/" target="_blank" rel="noopener noreferrer">FLI: кампанія</a>
+          <a href="https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-ban-artificial-superintelligence-and-temporarily-pause-advanced-ai-development/" target="_blank" rel="noopener noreferrer">Сандерс: анонс</a>
+          <a href="https://www.sanders.senate.gov/press-releases/prepared-remarks-sanders-regulating-ai-is-as-american-as-apple-pie/" target="_blank" rel="noopener noreferrer">Сандерс: промова</a>
+          <a href="https://www.sanders.senate.gov/wp-content/uploads/Ban-Artificial-Superintelligence-Act.pdf" target="_blank" rel="noopener noreferrer">Текст білля</a>
+          <a href="https://blog.controlai.org/p/the-first-american-bill-to-ban-superintelligent" target="_blank" rel="noopener noreferrer">ControlAI: зауваження</a>
+          <a href="https://darioamodei.com/post/we-must-pace-the-frontier" target="_blank" rel="noopener noreferrer">Амодей: темп</a>
+          <a href="https://www.whitehouse.gov/presidential-actions/2025/12/eliminating-state-law-obstruction-of-national-artificial-intelligence-policy/" target="_blank" rel="noopener noreferrer">Білий дім: указ</a>
+          <a href="https://x.com/So8res/status/2103286951747199004" target="_blank" rel="noopener noreferrer">Соарес: DEY.</a>
+          <a href="https://www.cbsnews.com/video/extended-interview-ex-anthropic-researcher-jacob-coxon-who-warns-ai-could-threaten-humanity/" target="_blank" rel="noopener noreferrer">CBS: інтерв’ю Коксона</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><span><strong>МИ</strong> · Кейс про те, як сигнал входить у готове поле.</span><span>Зріз станом на 26 вересня 2026 · гіпотези відділено від документів</span></footer>
+  <script>
+    (function () {
+      "use strict";
+      var actor = {
+        coxon: {
+          title: "Джекоб Коксон", kind: "Людина / привід",
+          mission: "Своїм дописом висловив тривогу щодо темпу розвитку ШІ. Це його публічна позиція, не корпоративна програма.",
+          action: "Допис 8 вересня зібрав широку увагу. Далі були інтерв’ю, а 15 вересня Сандерс процитував його.",
+          limit: "З хронології не випливає, що він написав закон чи був найнятий для початкового розгону. Його приватне життя і подальша кар’єра не є предметом цієї карти.",
+          sources: [["Промова Сандерса", "https://www.sanders.senate.gov/press-releases/prepared-remarks-sanders-regulating-ai-is-as-american-as-apple-pie/"],["Інтерв’ю CBS", "https://www.cbsnews.com/video/extended-interview-ex-anthropic-researcher-jacob-coxon-who-warns-ai-could-threaten-humanity/"]]
+        },
+        miri: {
+          title: "MIRI", kind: "Дослідницька організація",
+          mission: "У стратегії 2024 року назвала серед пріоритетів політику та публічне пояснення ризиків ШІ.",
+          action: "Називала DEY. своїм піарником ще у 2025 році; 23 вересня 2026 підтримала білль і широку паузу.",
+          limit: "Пожертви на MIRI не є доведеним платежем за допис Коксона. Підтримка закону не дорівнює авторству кожної норми.",
+          sources: [["Стратегія MIRI", "https://intelligence.org/2024/01/04/miri-2024-mission-and-strategy-update/"],["Позиція щодо білля", "https://intelligence.org/2026/09/23/miris-position-on-the-ban-artificial-superintelligence-act-of-2026/"],["Зв’язок із DEY.", "https://intelligence.org/2025/09/16/if-anyone-builds-it-everyone-dies-release-day/"]]
+        },
+        dey: {
+          title: "DEY.", kind: "Комунікаційна агенція",
+          mission: "Пояснює клієнтські ідеї потрібним аудиторіям; власної програми заборони ASI на сайті не заявляє.",
+          action: "За словами Нейта Соареса, він попросив її допомогти, коли пост уже мав близько 100 тисяч уподобань. Він каже, що агентство не здобуло Коксону жодного ефіру.",
+          limit: "Нуль ефірів, здобутих агенцією, не означає нуль інтерв’ю в медіа. Хто саме й скільки сплатив за епізод, не встановлено.",
+          sources: [["Пояснення Соареса", "https://x.com/So8res/status/2103286951747199004"],["Клієнти DEY.", "https://www.dey.nyc/artificial-intelligence/"],["CBS: ефір", "https://www.cbsnews.com/video/extended-interview-ex-anthropic-researcher-jacob-coxon-who-warns-ai-could-threaten-humanity/"]]
+        },
+        fli: {
+          title: "Future of Life Institute", kind: "Кампанія і коаліції",
+          mission: "Просуває безпечне використання технологій, поєднуючи адвокацію, просвіту й публічні кампанії.",
+          action: "9 лютого 2026 анонсувала кампанію з можливою стелею до $8 млн. На її форумі 15 вересня виступав Сандерс.",
+          limit: "Анонсована стеля не дорівнює витратам. Спільна трибуна не доводить оплату політиків, Коксона або спільної редакції закону.",
+          sources: [["Кампанія FLI", "https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwide-ai-regulation-campaign/"],["Програма асамблеї", "https://prohumanassembly.org/agenda/"]]
+        },
+        control: {
+          title: "ControlAI", kind: "Лобістська мережа",
+          mission: "Прагне міжнародної заборони штучного надінтелекту, лишаючи простір для інших корисних застосувань ШІ.",
+          action: "Американська організація звітує про $120 тис. і $80 тис. лобістських витрат за I–II квартали 2026; описує контакт з авторами білля.",
+          limit: "Підтримує заборону ASI, але заперечує широку паузу в тексті Сандерса. Британська Secure Future Research Ltd тепер має назву ControlAI, а не є окремим таємним донором.",
+          sources: [["Пропозиції й незгода", "https://blog.controlai.org/p/the-first-american-bill-to-ban-superintelligent"],["Реєстр Британії", "https://find-and-update.company-information.service.gov.uk/company/15088415"],["Звіт I кв.", "https://lda.gov/filings/public/filing/274a03b6-5086-4c8b-802f-003865436f37/print/"],["Звіт II кв.", "https://lda.gov/filings/public/filing/9b928c60-327c-47f7-9add-ac736a2fccf7/print/"]]
+        },
+        sanders: {
+          title: "Сандерс і Касар", kind: "Автори політичної ініціативи",
+          mission: "Запропонували заборону ASI, тимчасову паузу до правил безпеки й нового федерального регулятора.",
+          action: "Оголосили план 3 вересня, тобто до поста; 15 вересня Сандерс цитував Коксона; 23 вересня оприлюднили текст законопроєкту.",
+          limit: "Законопроєкт іще не закон. Хто саме сформулював кожну норму чи які консультації вплинули на фінальний варіант, із наявних джерел не встановити.",
+          sources: [["Анонс 3 вересня", "https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-ban-artificial-superintelligence-and-temporarily-pause-advanced-ai-development/"],["Промова 15 вересня", "https://www.sanders.senate.gov/press-releases/prepared-remarks-sanders-regulating-ai-is-as-american-as-apple-pie/"],["Текст білля", "https://www.sanders.senate.gov/wp-content/uploads/Ban-Artificial-Superintelligence-Act.pdf"]]
+        },
+        anthropic: {
+          title: "Амодей / Anthropic", kind: "Розробник ШІ",
+          mission: "Пропонує збалансувати розвиток передових моделей і перевірки безпеки без повної зупинки досліджень.",
+          action: "У вересневому есе запропонував зовнішніх оцінювачів усередині лабораторій, спільні стандарти та координацію темпу.",
+          limit: "Координація може змінити ціну входу на ринок, але сам текст есе не доводить наміру відгородити його від конкурентів. До окремих договорів з оцінювачами тут сліду немає.",
+          sources: [["Есе Амодея", "https://darioamodei.com/post/we-must-pace-the-frontier"],["Політика Anthropic", "https://www.anthropic.com/policy-on-the-ai-exponential/aaif"]]
+        },
+        whitehouse: {
+          title: "Білий дім", kind: "Інший державний курс",
+          mission: "У грудневому указі 2025 року заявив курс на єдину федеральну рамку й усунення правил штатів, які вважає перешкодою інноваціям.",
+          action: "Указ з’явився задовго до допису й показує протилежний напрям того самого спору про те, хто визначає правила.",
+          limit: "Указ не є відповіддю на вересневий пост; із нього не випливає автоматично результат голосування щодо білля Сандерса.",
+          sources: [["Указ Білого дому", "https://www.whitehouse.gov/presidential-actions/2025/12/eliminating-state-law-obstruction-of-national-artificial-intelligence-policy/"]]
+        }
+      };
+      var links = [
+        ["coxon", "dey"], ["coxon", "sanders"], ["miri", "dey"], ["miri", "sanders"],
+        ["fli", "sanders"], ["control", "sanders"]
+      ];
+      var state = { signal: true, selected: "coxon", rule: "sanders" };
+      var nodeEls = Array.from(document.querySelectorAll("[data-node]"));
+      var board = document.getElementById("board");
+      var paths = document.getElementById("paths");
+      var detail = document.getElementById("detail");
+      var toggle = document.getElementById("signalToggle");
+      var result = document.getElementById("boardResult");
+      function escapeText(s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+      function draw() {
+        var rect = board.getBoundingClientRect(), w = rect.width, h = rect.height;
+        paths.setAttribute("viewBox", "0 0 " + w + " " + h);
+        var markup = "";
+        links.forEach(function (pair) {
+          if (!state.signal && pair.indexOf("coxon") >= 0) return;
+          var a = board.querySelector('[data-node="' + pair[0] + '"]');
+          var b = board.querySelector('[data-node="' + pair[1] + '"]');
+          if (!a || !b) return;
+          var ar = a.getBoundingClientRect(), br = b.getBoundingClientRect();
+          var x1 = ar.right - rect.left, y1 = (ar.top + ar.bottom) / 2 - rect.top;
+          var x2 = br.left - rect.left, y2 = (br.top + br.bottom) / 2 - rect.top;
+          if (x2 <= x1) { x1 = (ar.left + ar.right) / 2 - rect.left; x2 = (br.left + br.right) / 2 - rect.left; }
+          var mid = (x1 + x2) / 2;
+          var klass = pair.indexOf(state.selected) >= 0 ? "active" : "dim";
+          markup += '<path class="' + klass + '" d="M ' + x1 + " " + y1 + " C " + mid + " " + y1 + ", " + mid + " " + y2 + ", " + x2 + " " + y2 + '"></path>';
+        });
+        paths.innerHTML = markup;
+      }
+      function showActor(id) {
+        if (!actor[id] || (!state.signal && id === "coxon")) return;
+        state.selected = id;
+        nodeEls.forEach(function (el) {
+          var key = el.getAttribute("data-node");
+          var connected = links.some(function (pair) { return pair.indexOf(id) >= 0 && pair.indexOf(key) >= 0; });
+          el.classList.toggle("selected", key === id);
+          el.classList.toggle("linked", connected && key !== id);
+          el.setAttribute("aria-pressed", key === id ? "true" : "false");
+        });
+        var x = actor[id];
+        var sources = x.sources.map(function (s) { return '<a href="' + escapeText(s[1]) + '" target="_blank" rel="noopener noreferrer">' + escapeText(s[0]) + " ↗</a>"; }).join("");
+        detail.innerHTML = '<div><div class="kind">' + escapeText(x.kind) + '</div><h3>' + escapeText(x.title) + '</h3><div class="sources">' + sources + '</div></div>' +
+          '<div><div class="field-title">Що заявляє</div><p>' + escapeText(x.mission) + '</p></div>' +
+          '<div><div class="field-title">Що видно в діях</div><p>' + escapeText(x.action) + '</p></div>' +
+          '<div><div class="field-title">Чого це не доводить</div><p>' + escapeText(x.limit) + '</p></div>';
+        draw();
+      }
+      nodeEls.forEach(function (el) { el.addEventListener("click", function () { showActor(el.getAttribute("data-node")); }); });
+      function switchSignal() {
+        state.signal = !state.signal;
+        board.classList.toggle("off", !state.signal);
+        toggle.classList.toggle("off", !state.signal);
+        toggle.setAttribute("aria-pressed", String(!state.signal));
+        toggle.textContent = state.signal ? "Прибрати допис Коксона" : "Повернути допис Коксона";
+        board.querySelector(".signal-vacant").setAttribute("aria-hidden", state.signal ? "true" : "false");
+        result.classList.toggle("off", !state.signal);
+        result.innerHTML = state.signal ?
+          '<span class="dot" aria-hidden="true"></span><p><strong>Пост у грі.</strong> Він привернув увагу і став політичною цитатою. Перевір, чи встиг породити політичні плани.</p>' :
+          '<span class="dot" aria-hidden="true"></span><p><strong>Машина не зникла.</strong> Стратегія MIRI, кампанія FLI та анонс Сандерса передували допису. Прибрали привід, а спір про повноваження, паузу й темп лишився.</p>';
+        showActor(state.signal ? "coxon" : "sanders");
+        window.requestAnimationFrame(draw);
+      }
+      toggle.addEventListener("click", switchSignal);
+      document.querySelectorAll("[data-moment]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          document.querySelectorAll("[data-moment]").forEach(function (m) { m.classList.toggle("active", m === b); });
+          var id = b.getAttribute("data-moment");
+          if (!state.signal && id === "coxon") switchSignal();
+          showActor(id);
+          var label = b.querySelector(".date").textContent.trim();
+          document.getElementById("timeComment").textContent = label + " · " + b.querySelector("span:last-child").textContent.trim() + ". Порівняй цю дату з 8 вересня.";
+        });
+      });
+      var ruleCopy = {
+        sanders: 'У запропонованому <a href="https://www.sanders.senate.gov/wp-content/uploads/Ban-Artificial-Superintelligence-Act.pdf" target="_blank" rel="noopener noreferrer">біллі ↗</a> це заборона ASI, широка пауза й створення федерального департаменту. Державне кермо. Анонс з’явився 3 вересня.',
+        control: '<a href="https://blog.controlai.org/p/the-first-american-bill-to-ban-superintelligent" target="_blank" rel="noopener noreferrer">ControlAI ↗</a> хоче заборони ASI, але критикує загальну паузу: вона, на їхню думку, занадто широка й може зачепити інші розробки. Це реальна незгода всередині табору прихильників обмежень.',
+        anthropic: '<a href="https://darioamodei.com/post/we-must-pace-the-frontier" target="_blank" rel="noopener noreferrer">Амодей ↗</a> пропонує зовнішніх оцінювачів, спільні стандарти та узгоджений темп. Модель дозволяє дослідженням тривати; її вплив на конкуренцію треба перевіряти за конкретними правилами.'
+      };
+      function selectRule(id) {
+        state.rule = id;
+        document.querySelectorAll("[data-rule]").forEach(function (b) {
+          var active = b.getAttribute("data-rule") === id;
+          b.classList.toggle("active", active);
+          b.setAttribute("aria-pressed", String(active));
+        });
+        document.getElementById("ruleResult").innerHTML = "<p>" + ruleCopy[id] + "</p>";
+      }
+      document.querySelectorAll("[data-rule]").forEach(function (b) { b.addEventListener("click", function () { selectRule(b.getAttribute("data-rule")); }); });
+      if (window.ResizeObserver) new ResizeObserver(draw).observe(board);
+      window.addEventListener("resize", draw, { passive: true });
+      showActor("coxon");
+      selectRule("sanders");
+    }());
+  </script>
+</body>
+</html>
